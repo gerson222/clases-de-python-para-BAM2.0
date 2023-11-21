@@ -1,0 +1,26 @@
+<!-- En el archivo listar_libros.html en tu directorio de plantillas (miapp) -->
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Lista de Libros</title>
+</head>
+
+<body>
+   <h1>Lista de Libros</h1>
+   <ul>
+      {% for libro in libros %}
+      {# Debugging info #}
+      <li>
+         {{ libro.titulo }} - {{ libro.autor }} - Publicado en: {{ libro.publicacion|date:"Y-m-d" }}
+         <a href="{% url 'modificar_libro' id=libro.id %}">Modificar</a>
+         <a href="{% url 'borrar_libro' id=libro.id %}">Borrar</a>
+      </li>
+      {% empty %}
+      <li>No hay libros disponibles</li>
+      {% endfor %}
+   </ul>
+   <a href="{% url 'crear_libro' %}">crear</a>
+</body>
+
+</html>
