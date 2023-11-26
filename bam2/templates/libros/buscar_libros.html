@@ -1,0 +1,28 @@
+<!-- templates/buscar_libros.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Buscar Libros</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <h1>Buscar Libros</h1>
+    <form method="GET" action="{% url 'buscar_libros' %}">
+        <input type="text" name="q" value="{{ query }}" placeholder="Buscar por título">
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if libros %}
+        <h2>Resultados de la búsqueda:</h2>
+        {% for libro in libros %}
+            {{ libro.titulo }} - {{ libro.autor }} - {{ libro.publicacion }}<br>
+        {% endfor %}
+    {% else %}
+        <p>No se encontraron resultados para la búsqueda.</p>
+    {% endif %}
+</body>
+
+</html>

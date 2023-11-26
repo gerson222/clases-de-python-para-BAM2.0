@@ -1,4 +1,4 @@
-<!-- En el archivo listar_libros.html en tu directorio de plantillas (miapp) -->
+<!-- En listar_libros.html -->
 <!DOCTYPE html>
 <html lang="es">
    <head>
@@ -8,25 +8,36 @@
    </head>
 
    <body>
-   <h1>Lista de Libros</h1>
-   <ul>
-      {% for libro in libros %}
-      {# Debugging info #}
-      <li>
-         {{ libro.titulo }} - {{ libro.autor }} - Publicado en: {{ libro.publicacion|date:"Y-m-d" }}
-         <a href="{% url 'modificar_libro' id=libro.id %}">Modificar</a>
-         <a href="{% url 'borrar_libro' id=libro.id %}">Borrar</a>
-      </li>
-      {% empty %}
-      <li>No hay libros disponibles</li>
-      {% endfor %}
-   </ul>
-   <!-- <a href="{% url 'crear_libro' %}">crear</a> -->
-   <!-- Incluye la vista de "Crear Libro" dentro de "Listar Libros" -->
-   <div>
-      {% include 'libros/crear_libros.html' %}
-   </div>
-      
-   </body>
+      <h1>Lista de Libros</h1>
 
+      <!-- Formulario de búsqueda -->
+      <form method="GET" action="{% url 'listar_libros' %}">
+         <input type="text" name="q" value="{{ query }}" placeholder="Buscar por título">
+         <button type="submit">Buscar</button>
+      </form>
+
+      <!-- Resultados de la búsqueda o lista completa de libros -->
+      {% if query %}
+         <h2>Resultados de la búsqueda:</h2>
+      {% else %}
+         <h2>Listado completo de libros:</h2>
+      {% endif %}
+
+      <ul>
+         {% for libro in libros %}
+            <li>
+               {{ libro.titulo }} - {{ libro.autor }} - Publicado en: {{ libro.publicacion|date:"Y-m-d" }}
+               <a href="{% url 'modificar_libro' id=libro.id %}">Modificar</a>
+               <a href="{% url 'borrar_libro' id=libro.id %}">Borrar</a>
+            </li>
+         {% empty %}
+            <li>No hay libros disponibles</li>
+         {% endfor %}
+      </ul>
+
+      <!-- Incluye la vista de "Crear Libro" dentro de "Listar Libros" -->
+      <div>
+         {% include 'libros/crear_libros.html' %}
+      </div>
+   </body>
 </html>
