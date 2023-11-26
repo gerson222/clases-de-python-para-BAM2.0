@@ -3,6 +3,7 @@ from django import forms
 from .models import Libro
 
 class LibroForm(forms.ModelForm):
+   mostrar_todo = forms.CharField(required=False, widget=forms.HiddenInput())
    class Meta:
       model = Libro
       fields = ['titulo', 'autor', 'publicacion']

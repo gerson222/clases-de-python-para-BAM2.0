@@ -14,6 +14,7 @@
       <form method="GET" action="{% url 'listar_libros' %}">
          <input type="text" name="q" value="{{ query }}" placeholder="Buscar por título">
          <button type="submit">Buscar</button>
+         <button type="submit" name="mostrar_todo" class="mostrar-todo-btn" value="1">Mostrar Todo</button>
       </form>
 
       <!-- Resultados de la búsqueda o lista completa de libros -->

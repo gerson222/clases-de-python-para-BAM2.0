@@ -37,6 +37,17 @@ label[for="id_publicacion"] {
    font-size: 16px;
 }
 
+.mostrar-todo-btn {
+   /* Agrega estilos específicos para el botón "Mostrar Todo" según sea necesario */
+   /* Por ejemplo: */
+   background-color: #4CAF50;
+   color: white;
+   padding: 10px 15px;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+}
+
 /* Estilos para dispositivos pequeños (móviles) */
 @media screen and (max-width: 600px) {
 
