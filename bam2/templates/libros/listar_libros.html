@@ -1,12 +1,13 @@
 <!-- En el archivo listar_libros.html en tu directorio de plantillas (miapp) -->
 <!DOCTYPE html>
-<html>
+<html lang="es">
+   <head>
+      {% load static %}
+      <title>Lista de Libros</title>
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   </head>
 
-<head>
-   <title>Lista de Libros</title>
-</head>
-
-<body>
+   <body>
    <h1>Lista de Libros</h1>
    <ul>
       {% for libro in libros %}
@@ -20,7 +21,12 @@
       <li>No hay libros disponibles</li>
       {% endfor %}
    </ul>
-   <a href="{% url 'crear_libro' %}">crear</a>
-</body>
+   <!-- <a href="{% url 'crear_libro' %}">crear</a> -->
+   <!-- Incluye la vista de "Crear Libro" dentro de "Listar Libros" -->
+   <div>
+      {% include 'libros/crear_libros.html' %}
+   </div>
+      
+   </body>
 
 </html>

@@ -21,6 +21,15 @@ label {
    color: #333;
 }
 
+form{
+   width: 350px;
+}
+body{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
 /* Estilos generales para todas las etiquetas */
 label[for="id_titulo"],
 label[for="id_autor"],
