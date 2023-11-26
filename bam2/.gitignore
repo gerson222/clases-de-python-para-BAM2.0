@@ -1,0 +1,39 @@
+# Archivos de configuración de Django
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Archivos locales de desarrollo
+db.sqlite3
+*.log
+
+# Carpeta de entorno virtual
+venv/
+
+# Archivos de configuración de sistema
+.idea/
+.vscode/
+
+# Carpeta de archivos estáticos generados
+staticfiles/
+
+# Carpeta de archivos media generados
+media/
+
+# Carpeta de registros y archivos temporales
+logs/
+tmp/
+
+# Archivos de configuración personalizados
+*.secret_key
+
+# Archivos de entorno
+.env
+.env.local
+.envrc
+
+# Otros archivos y carpetas generados
+__init__.py
+*.DS_Store
+Thumbs.db

@@ -1,0 +1,44 @@
+/* Estilos para los campos de entrada */
+.input-titulo,
+.input-autor,
+.input-publicacion {
+   width: 100%;
+   box-sizing: border-box;
+   margin-bottom: 10px;
+   padding: 10px;
+   font-size: 16px;
+   border: 2px solid #3498db;
+   border-radius: 5px;
+   background-color: #fff;
+   color: #333;
+}
+
+/* Estilos para las etiquetas */
+label {
+   display: block;
+   font-weight: bold;
+   margin-bottom: 5px;
+   color: #333;
+}
+
+/* Estilos generales para todas las etiquetas */
+label[for="id_titulo"],
+label[for="id_autor"],
+label[for="id_publicacion"] {
+   font-size: 16px;
+}
+
+/* Estilos para dispositivos pequeños (móviles) */
+@media screen and (max-width: 600px) {
+
+   .input-titulo,
+   .input-autor,
+   .input-publicacion {
+      font-size: 14px;
+      padding: 8px;
+   }
+
+   label {
+      font-size: 14px;
+   }
+}
