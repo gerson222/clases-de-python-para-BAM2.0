@@ -27,7 +27,7 @@
       <ul>
          {% for libro in libros %}
             <li>
-               {{ libro.titulo }} - {{ libro.autor }} - Publicado en: {{ libro.publicacion|date:"Y-m-d" }}
+               {{ libro.titulo }} - {{ libro.autor }} - Publicado en: {{ libro.publicacion|date:"Y-m-d" }} - Su precio es: ${{ libro.precio }} y dispones de {{ libro.unidades_disponibles }} unidades
                <a href="{% url 'modificar_libro' id=libro.id %}">Modificar</a>
                <a href="{% url 'borrar_libro' id=libro.id %}">Borrar</a>
             </li>

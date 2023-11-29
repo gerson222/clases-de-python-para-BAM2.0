@@ -39,25 +39,32 @@ def listar_libros(request):
 
     # Inicializar el formulario de Libro
     form = LibroForm(request.POST or None)
+
     # Obtener el término de búsqueda de la URL
     query = request.GET.get('q', '')
+
     # Manejar la creación de un nuevo libro utilizando la función compartida
     _manejar_formulario(request, LibroForm, 'libros/crear_libros.html', 'listar_libros')
+
     # Obtener todos los libros de la base de datos
     libros = Libro.objects.all()
+
     # Filtrar libros por el término de búsqueda si está presente
     if query:
         libros = libros.filter(titulo__icontains=query)
+
     # Verificar si se debe mostrar todos los libros (sin filtro de búsqueda)
     mostrar_todo = request.GET.get('mostrar_todo', False)
+
     # Redirigir a la misma vista sin filtro de búsqueda si se solicita mostrar todo
     if mostrar_todo:
         return redirect('listar_libros')
+        
     # Renderizar la página con la lista de libros y el formulario de búsqueda
     return render(request, 'libros/listar_libros.html', {'libros': libros, 'form': form, 'query': query})
 
 def crear_libro(request):
-    return _manejar_formulario(request, LibroForm, 'libros/crear_libros.html')
+    return _manejar_formulario(request, LibroForm, 'libros/crear_libros.html', 'listar_libros')
 
 def modificar_libro(request, id):
     libro = get_object_or_404(Libro, id=id)
