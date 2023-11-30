@@ -5,4 +5,5 @@ from ejemplolibros import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('libros/', include("ejemplolibros.urls")),
+    path('users/', include("users.urls")),
 ]
