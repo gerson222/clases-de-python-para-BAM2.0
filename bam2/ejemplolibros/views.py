@@ -1,7 +1,7 @@
 # En el archivo views.py de tu aplicación (ejemplolibros)
-from importlib import import_module
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import get_resolver, get_urlconf, reverse
+from importlib import import_module
 from .forms import LibroForm
 from .models import Libro
 
@@ -120,4 +120,4 @@ def navbar(request):
             # Maneja el caso en el que no existe un archivo urls.py o no hay url_patterns
             print(f"Advertencia: No se encontró urls.py o url_patterns para la aplicación {app_name}")
 
-    return render(request, 'base.html', {'nav_urls': nav_urls})
+    return render(request, 'base.html', {'nav_urls': nav_urls, 'user_authenticated': request.user.is_authenticated})

@@ -1,7 +1,12 @@
 <!-- user/login.html -->
-<h2>Iniciar Sesión</h2>
-<form method="post" action="{% url 'login' %}">
-   {% csrf_token %}
-   {{ form.as_p }}
-   <button type="submit">Iniciar Sesión</button>
-</form>
+{% extends 'base.html' %}
+{% block title %}Página de Registro{% endblock %}
+
+{% block login %}
+   <h2>Iniciar Sesión</h2>
+   <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Iniciar Sesión</button>
+   </form>
+{% endblock %}

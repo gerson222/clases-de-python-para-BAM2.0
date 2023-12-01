@@ -4,10 +4,11 @@
 {% block title %}Página de Registro{% endblock %}
 
 {% block registro %}
-   <!-- Contenido específico de la página de registro -->
    <form method="post">
       {% csrf_token %}
-      {{ formulario.as_p }}
+
+      {{ form.as_p }}
+
       <input type="submit" value="Registrar">
    </form>
 {% endblock %}

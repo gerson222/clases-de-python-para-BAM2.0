@@ -66,3 +66,36 @@ label[for="id_publicacion"] {
       font-size: 14px;
    }
 }
+
+/* Estilos generales del menú de navegación */
+.main-nav {
+   background-color: #333; /* Color de fondo del menú */
+   padding: 10px; /* Relleno interno del menú */
+}
+
+/* Estilos de la lista de navegación */
+.nav-list {
+   list-style: none; /* Eliminar los estilos de la lista predeterminados */
+   margin: 0; /* Eliminar el margen predeterminado de la lista */
+   padding: 0; /* Eliminar el relleno predeterminado de la lista */
+   display: flex; /* Hacer que la lista sea un contenedor flexible para alinear elementos horizontalmente */
+}
+
+/* Estilos de cada elemento de la lista */
+.nav-item {
+   margin-right: 10px; /* Espacio entre elementos de la lista */
+}
+
+/* Estilos de los enlaces */
+.nav-link {
+   text-decoration: none; /* Eliminar subrayado de los enlaces */
+   color: #fff; /* Color del texto del enlace */
+   padding: 5px 10px; /* Relleno interno del enlace */
+   border-radius: 5px; /* Bordes redondeados */
+   background-color: #555; /* Color de fondo del enlace */
+}
+
+/* Estilos para el enlace de inicio */
+.nav-link.home {
+   background-color: #f00; /* Cambiar color de fondo para el enlace de inicio */
+}

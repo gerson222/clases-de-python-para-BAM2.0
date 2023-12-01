@@ -1,8 +1,10 @@
-<nav>
-   <ul>
+<nav class="main-nav">
+   <ul class="nav-list">
       {% for url in nav_urls %}
-         <li><a href="{% url url.name %}">{{ url.name }}</a></li>
+         {% if url.name != 'ruta_que_requiere_autenticacion' or user_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url url.name %}">{{ url.name }}</a></li>
+         {% endif %}
       {% endfor %}
-      <li><a href="{% url 'navbar' %}">home</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
    </ul>
 </nav>
