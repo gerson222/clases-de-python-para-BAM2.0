@@ -3,6 +3,7 @@ from django.urls import path, include
 from ejemplolibros import views
 
 urlpatterns = [
+    path('', views.navbar, name='navbar'), 
     path('admin/', admin.site.urls),
     path('libros/', include("ejemplolibros.urls")),
     path('users/', include("users.urls")),

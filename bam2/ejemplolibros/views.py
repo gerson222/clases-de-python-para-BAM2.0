@@ -1,7 +1,9 @@
 # En el archivo views.py de tu aplicación (ejemplolibros)
+from importlib import import_module
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Libro
+from django.urls import get_resolver, get_urlconf, reverse
 from .forms import LibroForm
+from .models import Libro
 
 def _manejar_formulario(request, Formulario, template, redireccionar_a):
     """
@@ -93,5 +95,29 @@ def borrar_libro(request, id):
 def buscar_libros(request):
     query = request.GET.get('q', '')  # Obtiene el término de búsqueda de la URL
     libros = Libro.objects.filter(titulo__icontains=query)  # Realiza la búsqueda
-
     return render(request, 'libros/buscar_libros.html', {'libros': libros, 'query': query})
+
+def navbar(request):
+    # Lista de aplicaciones específicas sobre las cuales iterar
+    target_apps = ['ejemplolibros', 'seguridad', 'users', 'ventas']
+
+    nav_urls = []
+
+    # Itera sobre las aplicaciones específicas
+    for app_name in target_apps:
+        try:
+            # Intenta importar el módulo urls.py de la aplicación
+            urls_module = import_module(f'{app_name}.urls')
+
+            # Intenta obtener el resolver de la aplicación
+            app_resolver = get_resolver(urls_module)
+            app_urls = app_resolver.url_patterns
+
+            # Filtra las URL que no requieren argumentos
+            app_nav_urls = [pattern for pattern in app_urls if pattern.name and 'admin' not in pattern.name and not pattern.pattern.regex.groups]
+            nav_urls.extend(app_nav_urls)
+        except (ImportError, AttributeError):
+            # Maneja el caso en el que no existe un archivo urls.py o no hay url_patterns
+            print(f"Advertencia: No se encontró urls.py o url_patterns para la aplicación {app_name}")
+
+    return render(request, 'base.html', {'nav_urls': nav_urls})

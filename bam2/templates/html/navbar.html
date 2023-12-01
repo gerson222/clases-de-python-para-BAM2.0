@@ -1,0 +1,8 @@
+<nav>
+   <ul>
+      {% for url in nav_urls %}
+         <li><a href="{% url url.name %}">{{ url.name }}</a></li>
+      {% endfor %}
+      <li><a href="{% url 'navbar' %}">home</a></li>
+   </ul>
+</nav>
