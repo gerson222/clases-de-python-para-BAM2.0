@@ -23,19 +23,19 @@ def iniciar_sesion(request):
          user = authenticate(request, username=username, password=password)
          if user is not None:
             auth_login(request, user)
-            return redirect('llegaste')
+            return redirect('profile')
          else:
             form.add_error(None, 'Credenciales no válidas')
    else:
       return render(request, 'user/login.html', {'form': form})
 
-@login_required
+@login_required(login_url='/users/login/')
 def cerrar_sesion(request):
    # Cierra la sesión del usuario
    logout(request)
    # Redirige a la página de inicio o a donde desees después del logout
-   return redirect('navbar')
+   return redirect('home')
 
-@login_required
-def llegaste(request):
-   return render(request, 'user/logeo.html')
+@login_required(login_url='/users/login/')
+def profile(request):
+   return render(request, 'user/profile.html')
