@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block pass %}
+<form method="post" action="">
+   {% csrf_token %}
+   
+   <label for="{{ password_form.old_password.id_for_label }}">Contraseña actual:</label>
+   {{ password_form.old_password }}
+   {{ password_form.old_password.errors }}
+
+   <label for="{{ password_form.new_password1.id_for_label }}">Nueva contraseña:</label>
+   {{ password_form.new_password1 }}
+   {{ password_form.new_password1.errors }}
+
+   <label for="{{ password_form.new_password2.id_for_label }}">Repetir nueva contraseña:</label>
+   {{ password_form.new_password2 }}
+   {{ password_form.new_password2.errors }}
+
+   <button type="submit">Cambiar contraseña</button>
+</form>
+{% endblock %}

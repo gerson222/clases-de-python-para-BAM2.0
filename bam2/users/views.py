@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
-from .forms import *
-from django.contrib.auth import authenticate, login as auth_login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout, update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
-from django.contrib.auth.models import User
+from django.contrib import messages
+from .forms import *
 
 
 def registrar(request):
@@ -73,3 +75,27 @@ def edit_profile(request):
    }
 
    return render(request, 'user/edit_profile.html', context)
+
+@login_required(login_url='/users/login/')
+def cambiar_contraseña(request):
+   user = request.user
+
+   if request.method == 'POST':
+      password_form = PasswordChangeForm(user, request.POST)
+      if password_form.is_valid():
+            user = password_form.save()
+
+            # Es importante actualizar la sesión de autenticación después de cambiar la contraseña
+            update_session_auth_hash(request, user)
+
+            messages.success(request, 'Contraseña cambiada exitosamente.')
+            return redirect('profile')  # Redirigir a la página de perfil o donde desees
+
+   else:
+      password_form = PasswordChangeForm(user)
+
+   context = {
+      'password_form': password_form,
+   }
+
+   return render(request, 'user/cambiar_contraseña.html', context)
