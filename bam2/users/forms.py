@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from django.forms import EmailField, CharField, PasswordInput
 from django.contrib.auth.models import User
 
@@ -15,3 +15,8 @@ class FormularioRegistroUsuario(UserCreationForm):
 
 class FormularioInicioSesion(AuthenticationForm):
    pass
+
+class UserProfileForm(UserChangeForm):
+   class Meta:
+      model = User
+      fields = ['first_name', 'last_name', 'email', 'username']
